@@ -3,18 +3,21 @@
         if (window.arConfig) {
             for (var i = 0; i < arConfig.rules.length; i++) {
                 var rule = arConfig.rules[i];
-                var url = document.location.hostname + document.location.pathname;
-                if (url.startsWith(rule.url)) {
+                var hostname = document.location.hostname;
+                if (hostname.indexOf(rule.url)>-1) {
                     for (var j = 0; j < rule.eles.length; j++) {
                         var eleSler = rule.eles[j];
                         var eless = document.querySelectorAll(eleSler);
                         for (var x = 0; x < eless.length; x++) {
                             var ele = eless[x];
-                            if (ele && ele.adrep == null) {
+                            if (ele) {
                                 var width = ele.clientWidth;
                                 var height = ele.clientHeight;
-                                ele.innerHTML = "<div style='color:red;width:" + width + "px;height:" + height + "px;font-size:20px'>"
-                                    + (rule.replaceText || arConfig.replaceText) + "</div>";
+                                var ihtml = "<div style='color:red;width:" + width + "px;height:" + height + "px;font-size:20px'>"
+                                + (rule.replaceText || arConfig.replaceText) + "</div>";
+                                if(ele.innerHTML!=ihtml){
+                                    ele.innerHTML = ihtml;
+                                }
                                 ele.adrep = true;
                             }
                         }
