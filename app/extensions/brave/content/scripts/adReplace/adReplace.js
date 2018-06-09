@@ -10,19 +10,19 @@
                         var eless = document.querySelectorAll(eleSler);
                         for (var x = 0; x < eless.length; x++) {
                             var ele = eless[x];
-                            if (ele) {
+                            if (ele && ele.adrep == null) {
                                 var width = ele.clientWidth;
                                 var height = ele.clientHeight;
-                                ele.innerHTML = "<div style='width:" + width + "px;height:" + height + "px;font-size:20px'>"
+                                ele.innerHTML = "<div style='color:red;width:" + width + "px;height:" + height + "px;font-size:20px'>"
                                     + (rule.replaceText || arConfig.replaceText) + "</div>";
-
+                                ele.adrep = true;
                             }
                         }
                     }
                 }
             }
         }
-        setTimeout(adReplace,200);
+        setTimeout(adReplace, 200);
     }
     adReplace();
 })();
